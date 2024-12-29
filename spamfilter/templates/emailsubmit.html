@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content">
+<h1> Email Spam Prediction</h1>
+<form method="POST" enctype = "multipart/form-data">
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+      <li style="color:red">{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    {% for field in form.errors %}
+    {% for error in form.errors[field] %}
+    <div class="alert alert-error">
+        <li style="color:red"> {{error}} </li>
+    </div>
+    {% endfor %}
+    {% endfor %}
+    <br>
+
+    <h3>
+    {{ form.inputemail.label }} : {{ form.inputemail }} </h3><br>
+
+    <h3> {{ form.inputfile.label }} : {{ form.inputfile }} </h3> <br>
+
+    <h3>{{ form.inputmodel.label }} :
+
+    {{ form.inputmodel }} </h3> <br>
+    <input type="reset" value="Refresh">
+
+    {{ form.submit }}
+
+</form>
+</div>
+{% endblock %}

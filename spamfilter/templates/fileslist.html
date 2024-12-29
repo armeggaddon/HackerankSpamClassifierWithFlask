@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content">
+{% if fname %}
+File : <span style="color:green">{{ fname }}</span> is uploaded successfully.<br>
+{% endif %}
+
+<h2>List of Uploaded Files</h2>
+{% for file in files %}
+<li>{{ file }}</li>
+{% endfor %}
+
+    <br>
+    <p> Click on <a href={{ url_for('SpamAPI.train_dataset') }}>TRAIN</a> to train and build a model.</p>
+    <p> Click on <a href={{ url_for('SpamAPI.file_upload') }}>UPLOAD</a> to upload a new emails data set.</p>
+
+</div>
+{% endblock %}

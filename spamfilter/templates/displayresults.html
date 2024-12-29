@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content">
+<h2>Prediction Results</h2>
+{% if predictions %}
+    <div id="extra-content"  >
+    <table is-bordered>
+        <tr>
+            <th>Input Email</th>
+            <th>Predictied Class</th>
+        </tr>
+        {% for email, result in predictions %}
+            <tr>
+                <td> {{ email }} </td>
+                <td>
+                    {% if result == 'NOT SPAM' %}
+                    <span style="color:blue;font-size:20px;font-weight:bold;">{{ result }}</span>
+                    {% else %}
+                    <span style="color:red;font-size:20px;font-weight:bold;">{{ result }}</span>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+        <p> Click on <a href={{ url_for('SpamAPI.predict') }}>PREDICT</a> to perform prediction again.</p>
+    <p> Click on <a href={{ url_for('SpamAPI.train_dataset') }}>TRAIN</a> to train and build a new model.</p>
+    <p> Click on <a href={{ url_for('SpamAPI.file_upload') }}>UPLOAD</a> to upload a new emails data set.</p>
+    </div>
+{% endif %}
+    </div>
+{% endblock %}
